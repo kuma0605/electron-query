@@ -30,6 +30,9 @@
           <el-form-item>
             <el-button type="default" @click="exportData">导出</el-button>
           </el-form-item>
+          <el-form-item>
+            <el-button type="default" @click="importPanel=true">导入</el-button>
+          </el-form-item>
         </el-form>
         <el-table
           :data="tableData"
@@ -160,6 +163,16 @@
             </el-form-item>
           </el-form>
         </el-dialog>
+        <el-dialog title="导入数据" :visible.sync="importPanel">
+          <el-form label-width="80px" label-position='left' size='mini'>
+            <el-form-item label="文件路径">
+              <el-input v-model="filePath"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitPath">确定</el-button>
+            </el-form-item>
+          </el-form>
+        </el-dialog>
     </div>
   </div>
 </template>
@@ -225,7 +238,9 @@ export default {
         address: ''
       },
       newPanelVisible: false,
-      panelTitle: '新建'
+      panelTitle: '新建',
+      importPanel:false,
+      filePath:''
     }
   },
   created () {
@@ -351,6 +366,24 @@ export default {
       search = search.slice(0, -1)
       console.log(search)
       window.open('/c/exportOrders' + search)
+    },
+    async submitPath(){
+      let query={
+        filePath:this.filePath
+      };
+      let res = await httpIns.post('/c/importOrders', query);
+      this.importPanel=false;
+      if(res.data.status===0){
+        this.$message({
+          message: '操作成功',
+          type: 'success'
+        })
+      }else{
+        this.$message({
+          message: '操作失败',
+          type: 'error'
+        })
+      }
     }
   }
 }
