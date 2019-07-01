@@ -8,16 +8,19 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build & sleep 5 && NODE_ENV=PRODUCTION electron app.js",
     "lint": "vue-cli-service lint",
     "dev": "NODE_ENV=DEV vue-cli-service serve & sleep 5 && NODE_ENV=DEV electron app.js",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder "
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "connect-timeout": "^1.9.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.10.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^0.19.1",
     "http-server": "^0.11.1",
     "terser": "4.0.0",
     "vue": "^2.6.10",

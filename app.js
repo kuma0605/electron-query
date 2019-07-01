@@ -1,10 +1,10 @@
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const httpServer = require('http-server');
-httpServer.createServer({root:'./dist'}).listen('8080')
+/* const httpServer = require('http-server');
+httpServer.createServer({root:'./dist'}).listen('8080') */
 
-/* const express = require('express');
+const express = require('express');
 const timeout = require('connect-timeout');
 const proxy = require('http-proxy-middleware');
 const expressIns = express();
@@ -13,7 +13,7 @@ const expressIns = express();
 const TIME_OUT = 30 * 1e3;
  
 // 设置端口
-expressIns.set('port', '8081');
+expressIns.set('port', '8080');
  
 // 设置超时 返回超时响应
 // expressIns.use(timeout(TIME_OUT));
@@ -31,13 +31,13 @@ expressIns.use('/c', proxy({target: 'http://localhost:5757', changeOrigin: true}
 // 监听端口
 expressIns.listen(expressIns.get('port'), () => {
  console.log(`server running @${expressIns.get('port')}`);
-}); */
+});
 
 let url
 if (process.env.NODE_ENV === 'DEV') {
-  url = 'http://localhost:8081/'
+  url = 'http://localhost:8080/'
 } else {
-  url = `http://localhost:8081/`
+  url = `http://localhost:8080/`
 }
 
 app.on('ready', () => {
