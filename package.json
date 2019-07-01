@@ -2,13 +2,24 @@
   "name": "electron-query",
   "version": "0.1.0",
   "private": true,
+  "main": "app.js",
+  "build": {
+    "appId": "query.id"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "dev": "NODE_ENV=DEV vue-cli-service serve & sleep 5 && NODE_ENV=DEV electron app.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "element-ui": "^2.10.0",
+    "http-server": "^0.11.1",
+    "terser": "4.0.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3"
   },
@@ -17,6 +28,8 @@
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "babel-eslint": "^10.0.1",
+    "electron": "^5.0.6",
+    "electron-builder": "^20.44.4",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
