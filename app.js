@@ -13,7 +13,7 @@ const expressIns = express();
 const TIME_OUT = 30 * 1e3;
  
 // 设置端口
-expressIns.set('port', '8080');
+expressIns.set('port', '8089');
  
 // 设置超时 返回超时响应
 // expressIns.use(timeout(TIME_OUT));
